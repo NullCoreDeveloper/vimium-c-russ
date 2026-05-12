@@ -70,7 +70,7 @@
   "content_security_policy": {
     "extension_pages": "script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'"
   },
-  "default_locale": "en",
+  "default_locale": "ru",
   "description": "__MSG_description__",
   "homepage_url": "https://github.com/NullCoreDeveloper/vimium-c-russ",
   "host_permissions": [
