@@ -1,5 +1,6 @@
 .*/
 !.git*
+!.github/
 ~*
 *~
 *.bak
@@ -45,3 +46,13 @@ scripts/*.pem.enc
 scripts/build*.sh
 .env*
 /dist-*
+
+# Standard additions
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.swp
+.idea/
+.vscode/
+*.local
