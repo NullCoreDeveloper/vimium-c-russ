@@ -55,6 +55,7 @@ A <span style="color: #a55e18;">C</span>ustomized
   style="color: #a55e18;">消耗很低</span>。
 
 [阅读中文介绍 (description in Chinese) 。](README-zh.md)
+[Читать описание на русском (description in Russian).](README-ru.md)
 
 This project is mainly developed and maintained by [gdh1995](https://github.com/gdh1995) (Gong Dahan),
 and open-sourced under the [Apache-2.0 license](LICENSE.txt).

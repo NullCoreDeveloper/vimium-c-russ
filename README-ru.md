@@ -1,0 +1,123 @@
+<a name="readme"></a><h2 align="center">
+  <img src="icons/icon128.png" width="32" height="32" alt="" />
+  <span style="color: #2f508e;">Vim</span>ium <span style="color: #a55e18;">C</span> — Всё с клавиатуры
+</h2>
+
+**Доступно в [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/vimium-c/) /
+[Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/aibcglbfblnogfjhbcmmpobjhnomhcdo) /
+[Chrome Web Store](https://chrome.google.com/webstore/detail/vimium-c-all-by-keyboard/hfjbmagddngcpeloejdejnfgbamkjaeg)**
+
+Улучшенная версия [Vimium](https://github.com/philc/vimium) для навигации по веб-страницам и управления браузером исключительно с помощью клавиатуры.
+Основные возможности: [контекстные привязки](https://github.com/gdh1995/vimium-c/wiki/Map-a-key-to-different-commands-on-different-websites), [глобальные сочетания клавиш](https://github.com/gdh1995/vimium-c/wiki/Trigger-commands-in-an-input-box#user-content-shortcut), [последовательности команд](https://github.com/gdh1995/vimium-c/wiki/Auto-run-a-tree-of-commands), поддержка русского и китайского языков, а также возможность [инъекции](https://github.com/gdh1995/vimium-c/wiki/Inject-into-other-extensions) в другие расширения. Написано на C-подобном коде для максимальной скорости работы и минимального потребления ресурсов.
+
+[English description is here.](README.md)
+
+Этот проект разрабатывается и поддерживается [gdh1995](https://github.com/gdh1995) (Gong Dahan) и распространяется под лицензией [Apache-2.0](LICENSE.txt).
+
+Поддерживает современные браузеры на базе Chromium (версии 102+) и Firefox (версии 101+). При сборке из исходного кода может поддерживать более старые версии (Chromium 32+, Firefox 63+).
+
+![Демонстрация использования Vimium C](https://gdh1995.cn/vimium-c/demo.gif)
+
+# Горячие клавиши
+
+Модификаторы указываются как `<c-x>` (Ctrl+x), `<m-x>` (Meta+x) и `<a-x>` (Alt+x).
+Для Shift+X и Ctrl+Shift+X используйте `X` и `<c-s-x>`.
+
+Список всех команд можно увидеть в любой момент, нажав `?`.
+
+### Навигация по текущей странице:
+
+    ?       показать справку со списком всех клавиш
+    h       прокрутить влево
+    j       прокрутить вниз
+    k       прокрутить вверх
+    l       прокрутить вправо
+    gg      в начало страницы
+    G       в конец страницы
+    d       прокрутить на полстраницы вниз
+    u       прокрутить на полстраницы вверх
+    f       показать подсказки (hints) для открытия ссылок в текущей вкладке
+    F       показать подсказки для открытия ссылок в новой вкладке
+    r       перезагрузить страницу
+    gs      исходный код страницы
+    i       режим вставки (все команды игнорируются до нажатия Esc)
+    yy      копировать текущий URL
+    yf      копировать URL ссылки
+    gf      переход к следующему фрейму
+    gF      фокус на главный фрейм
+
+### Открытие новых страниц:
+
+    o       открыть URL, закладку или историю (Vomnibar)
+    O       открыть URL, закладку или историю в новой вкладке
+    b       открыть закладку
+    B       открыть закладку в новой вкладке
+
+### Поиск:
+
+    /       войти в режим поиска
+              -- введите запрос и нажмите Enter для поиска или Esc для отмены
+    n       следующее совпадение
+    N       предыдущее совпадение
+
+### История:
+
+    H       назад по истории
+    L       вперед по истории
+
+### Управление вкладками:
+
+    J, gT   на одну вкладку влево
+    K, gt   на одну вкладку вправо
+    g0      к первой вкладке (ng0 — к n-й вкладке)
+    g$      к последней вкладке
+    ^       к предыдущей посещенной вкладке
+    t       создать вкладку
+    yt      дублировать текущую вкладку
+    x       закрыть текущую вкладку
+    X       восстановить закрытую вкладку
+    T       поиск по открытым вкладкам
+    W       переместить вкладку в новое окно
+    <a-p>   закрепить/открепить вкладку
+
+### Метки:
+
+    ma, mA  установить локальную метку "a" (глобальную "A")
+    `a, `A  перейти к локальной метке "a" (глобальной "A")
+    ``      вернуться в позицию до прыжка
+
+# Настройка клавиш
+
+Вы можете переназначить любые клавиши на странице настроек (Custom key mappings).
+
+Команды:
+* `map <key> command`: привязать клавишу к команде.
+* `mapKey <key> <another_key>`: заставить Vimium C считать одну клавишу другой.
+* `unmap <key>`: убрать привязку.
+* `unmapAll`: убрать все стандартные привязки.
+
+Примеры:
+* `map r reload` — клавиша `r` перезагружает страницу.
+* `map <c-d> scrollPageDown` — Ctrl+D прокручивает страницу вниз.
+
+# Сборка
+
+Для ручной сборки требуется Node.js 13+ и npm:
+
+``` bash
+npm install typescript
+npm install pngjs # только для Chromium
+node scripts/tsc
+```
+
+`gulp local` компилирует файлы на месте, а `gulp dist` собирает и минимизирует их в папку `dist/`.
+
+# Поддержка проекта (Donating)
+
+Vimium C — проект с открытым исходным кодом, бесплатный для всех. Если вы хотите поддержать автора финансово:
+[Open Collective](https://opencollective.com/vimium-c), [PayPal](https://www.paypal.me/gdh1995), [Alipay](https://intl.alipay.com/) или [WeChat](https://www.wechat.com/).
+
+# Лицензия
+
+Vimium C распространяется под лицензией **Apache-2.0**.
+Часть кода основана на [Vimium](https://github.com/philc/vimium) (MIT License).
