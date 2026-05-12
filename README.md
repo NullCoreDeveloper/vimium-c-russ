@@ -1,60 +1,112 @@
 <a name="readme"></a><h2 align="center">
   <img src="icons/icon128.png" width="32" height="32" alt="" />
-  <span style="color: #2f508e;">Vim</span>ium <span style="color: #a55e18;">C</span> - All by Keyboard (Russified)
+  <span style="color: #2f508e;">Vim</span>ium <span style="color: #a55e18;">C</span> — Всё с клавиатуры (RU)
 </h2>
 
-A customized version of the browser extension for keyboard-based navigation and control.
-This version focuses on full Russian localization and improved defaults.
+Модифицированная версия расширения для навигации по веб-страницам и управления браузером исключительно с помощью клавиатуры.
+Основные возможности: контекстные привязки, глоабльные сочетания клавиш, последовательности команд, полная поддержка русского языка. Написано на C-подобном коде для максимальной скорости работы и минимального потребления ресурсов.
 
-[Читать описание на русском (description in Russian).](README-ru.md)
+Этот проект является форком оригинального Vimium C с упором на качественную русскую локализацию. Все упоминания оригинального автора и ссылки на скачивание оригинальных версий удалены.
 
-# Features
+Поддерживает современные браузеры на базе Chromium (версии 102+) и Firefox (версии 101+). При сборке из исходного кода может поддерживать более старые версии (Chromium 32+, Firefox 63+).
 
-* Full keyboard control over web pages
-* Contextual mapping
-* Global shortcuts
-* Command sequences
-* Low resource cost (C-style code)
+![Демонстрация использования Vimium C](https://gdh1995.cn/vimium-c/demo.gif)
 
-# Keyboard Bindings
+# Горячие клавиши
 
-Modifier keys are specified as `<c-x>`, `<m-x>`, and `<a-x>` for Ctrl+x, Meta+x, and Alt+x respectively.
-For Shift+X and Ctrl+Shift+X, just type `X` and `<c-s-x>`.
+Модификаторы указываются как `<c-x>` (Ctrl+x), `<m-x>` (Meta+x) и `<a-x>` (Alt+x).
+Для Shift+X и Ctrl+Shift+X используйте `X` и `<c-s-x>`.
 
-Once you have the extension installed, you can see this list of key bindings at any time by typing `?`.
+Список всех команд можно увидеть в любой момент, нажав `?`.
 
-Navigating the current page:
+### Навигация по текущей странице:
 
-    ?       show the help dialog for a list of all available keys
-    h       scroll left
-    j       scroll down
-    k       scroll up
-    l       scroll right
-    gg      scroll to top of the page
-    G       scroll to bottom of the page
-    d       scroll down half a page
-    u       scroll up half a page
-    f       show hints for links and buttons to open in the current tab
-    F       show link hints and open a link in a new tab
-    r       reload
-    gs      view source
-    i       enter insert mode -- all commands will be ignored until you hit Esc to exit
-    yy      copy the current url to the clipboard
-    yf      copy a link url to the clipboard
-    gf      cycle forward to the next frame
-    gF      focus the main/top frame
+    ?       показать справку со списком всех клавиш
+    h       прокрутить влево
+    j       прокрутить вниз
+    k       прокрутить вверх
+    l       прокрутить вправо
+    gg      в начало страницы
+    G       в конец страницы
+    d       прокрутить на полстраницы вниз
+    u       прокрутить на полстраницы вверх
+    f       показать подсказки (hints) для открытия ссылок в текущей вкладке
+    F       показать подсказки для открытия ссылок в новой вкладке
+    r       перезагрузить страницу
+    gs      исходный код страницы
+    i       режим вставки (все команды игнорируются до нажатия Esc)
+    yy      копировать текущий URL
+    yf      копировать URL ссылки
+    gf      переход к следующему фрейму
+    gF      фокус на главный фрейм
 
-# Building
+### Открытие новых страниц:
 
-If you want to compile this project manually, then you need a Node.js 13+ and npm. Please run:
+    o       открыть URL, закладку или историю (Vomnibar)
+    O       открыть URL, закладку или историю в новой вкладке
+    b       открыть закладку
+    B       открыть закладку в новой вкладке
+
+### Поиск:
+
+    /       войти в режим поиска
+              -- введите запрос и нажмите Enter для поиска или Esc для отмены
+    n       следующее совпадение
+    N       предыдущее совпадение
+
+### История:
+
+    H       назад по истории
+    L       вперед по истории
+
+### Управление вкладками:
+
+    J, gT   на одну вкладку влево
+    K, gt   на одну вкладку вправо
+    g0      к первой вкладке (ng0 — к n-й вкладке)
+    g$      к последней вкладке
+    ^       к предыдущей посещенной вкладке
+    t       создать вкладку
+    yt      дублировать текущую вкладку
+    x       закрыть текущую вкладку
+    X       восстановить закрытую вкладку
+    T       поиск по открытым вкладкам
+    W       переместить вкладку в новое окно
+    <a-p>   закрепить/открепить вкладку
+
+### Метки:
+
+    ma, mA  установить локальную метку "a" (глобальную "A")
+    `a, `A  перейти к локальной метке "a" (глобальной "A")
+    ``      вернуться в позицию до прыжка
+
+# Настройка клавиш
+
+Вы можете переназначить любые клавиши на странице настроек (Custom key mappings).
+
+Команды:
+* `map <key> command`: привязать клавишу к команде.
+* `mapKey <key> <another_key>`: заставить Vimium C считать одну клавишу другой.
+* `unmap <key>`: убрать привязку.
+* `unmapAll`: убрать все стандартные привязки.
+
+Примеры:
+* `map r reload` — клавиша `r` перезагружает страницу.
+* `map <c-d> scrollPageDown` — Ctrl+D прокручивает страницу вниз.
+
+# Сборка
+
+Для ручной сборки требуется Node.js 13+ и npm:
 
 ``` bash
 npm install typescript
-npm install pngjs # only needed for Chromium-based browsers
+npm install pngjs # только для Chromium
 node scripts/tsc
 ```
 
-# License
+`gulp local` компилирует файлы на месте, а `gulp dist` собирает и минимизирует их в папку `dist/`.
 
-Vimium C: Copyright (c) Gong Dahan and contributors. See the [Apache-2.0 license](LICENSE.txt) for details.
-Based on [Vimium](https://github.com/philc/vimium) (MIT license).
+# Лицензия
+
+Vimium C распространяется под лицензией **Apache-2.0**.
+Часть кода основана на оригинальном проекте Vimium (MIT License).
