@@ -365,6 +365,7 @@ var Tasks = {
         var specific = manifest.browser_specific_settings || (manifest.browser_specific_settings = {});
         var gecko = specific.gecko || (specific.gecko = {})
         gecko.id = getBuildItem("FirefoxID")
+        gecko.data_collection_permissions = { required: ["none"] }
         var ffVer = getBuildItem("MinFFVer")
         if (ffVer < 199 && ffVer >= 54) {
           gecko.strict_min_version = ffVer + ".0"
